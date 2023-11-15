@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            color: #fff;
+            background: #09001d;
+        }
+
+        .main {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #333;
+            height: 100vh;
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            position: fixed;
+            top: 0;
+            left: 0;
+            transition: all 0.4s ease-in-out;
+        }
+
+        .sidebar .logo {
+            color: #fff;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            width: 100%;
+        }
+
+        .sidebar ul li {
+            padding: 10px;
+            width: 100%;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 20px;
+            display: block;
+            padding: 10px;
+            transition: 0.3s;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 6px;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .home-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        #myDocuments label {
+    font-size: 18px;
+    color: #27ae60;
+}
+
+#myDocuments select {
+    font-size: 18px;
+    padding: 8px;
+}
+
+#myDocuments input[type="file"] {
+    margin-bottom: 10px;
+}
+
+#myDocuments button {
+    font-size: 18px;
+    background-color: #27ae60;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+        button {
+            width: 190px;
+            height: 55px;
+            background: rgba(76, 175, 79, 0.911);
+            border:2px solid #fff;
+            outline: radius 6px;
+            box-shadow: 0 0 10px #4CAF50 ;
+            font-size: 18px;
+            color: #ffffff;
+            letter-spacing: 1px;
+            font-weight: 600;
+            cursor:pointer; transition: .5s;
+            border-radius: 6px;
+}
+
+
+button:hover {
+    background: #09001d;
+            box-shadow: none;
+}
+.delete-button{
+    width: 100px;
+            height: 40px;
+            background: rgba(76, 175, 79, 0.911);
+            border:2px solid #fff;
+            outline: radius 6px;
+            box-shadow: 0 0 10px #4CAF50 ;
+            font-size: 18px;
+            color: #ffffff;
+            letter-spacing: 1px;
+            font-weight: 600;
+            cursor:pointer; transition: .5s;
+            border-radius: 6px;
+
+}
+.delete-button:hover {
+    background: #09001d;
+            box-shadow: none;}
+
+        .dashboard-section {
+            display: none;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            color: #09001d;
+        }
+
+        .document-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+
+        }
+
+        .document-card {
+            background-color: #eee;
+            padding: 10px;
+            border-radius: 8px;
+            width: 300px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .form-control input,
+    .form-control select,
+    .form-control textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        border-radius: 4px;
+        font-size: 16px;
+       
+         
+    }
+
+    /* Additional styles for specific input fields */
+    .form-control textarea {
+        height: 100px;
+    }
+    
+    </style>
+    <title>User Profile - Dashboard</title>
+</head>
+<body>
+
+<div class="main">
+    <div class="sidebar">
+        <div class="logo">
+            Your Logo
+        </div>
+        <ul>
+            <li><a href="#profile" onclick="showContent('profile')">Profile</a></li>
+            <li><a href="#announcements" onclick="showContent('announcements')">Announcements</a></li>
+            <li><a href="#myDocuments" onclick="showContent('myDocuments')">My Documents</a></li>
+            <li><a href="index.html" onclick="showContent('logout')">Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <div class="home-content">
+            <div class="dashboard-section" id="profile">
+                <h2 style="font-size: 36px;">User Profile</h2>
+                <!-- Add profile details here -->
+
+                <form id="surveyForm" onsubmit="submitSurvey(event)">
+                    <div class="form-control">
+                        <label for="name" id="label-name">Name</label>
+                        <input type="text" id="name" placeholder="Enter your name" required />
+                    </div>
+            
+                    <div class="form-control">
+                        <label for="age" id="label-age">Age</label>
+                        <input type="text" id="age" placeholder="Enter your age" required />
+                    </div>
+            
+                    <div class="form-control">
+                        <label for="email" id="label-email">Email</label>
+                        <input type="email" id="email" placeholder="Enter your email" required />
+                    </div>
+            
+                    <div class="form-control">
+                        <label for="phoneNumber" id="label-phoneNumber">Phone Number</label>
+                        <input type="tel" id="phoneNumber" placeholder="Enter your phone number" required />
+                    </div>
+            
+                    <div class="form-control">
+                        <label for="teacher" id="label-teacher">Teacher</label>
+                        <input type="text" id="teacher" placeholder="Enter your teacher's name" required />
+                    </div>
+            
+                    <div class="form-control">
+                        <label for="department" id="label-department">Department</label>
+                        <input type="text" id="department" placeholder="Enter your department" required />
+                    </div>
+            
+                    <div class="form-control">
+                        <label for="address" id="label-address">Address</label>
+                        <textarea id="address" placeholder="Enter your address"></textarea>
+                    </div>
+            
+                    <!-- Add more form fields as needed -->
+            
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+
+            <div class="dashboard-section" id="announcements">
+                <h2 style="font-size: 36px;">Announcements</h2>
+                <!-- Add announcements here -->
+                <h3>It is said to update your informations as soon as possible</h3>
+            </div>
+
+            <div class="dashboard-section" id="myDocuments">
+                <h2 style="font-size: 36px;">My Documents</h2>
+                <form id="documentForm">
+                    <label for="documentType">Select Document Type:</label>
+                    <select id="documentType" name="documentType" style="font-size: 18px;">
+                        <option value="markSheet">Mark Sheet</option>
+                        <option value="panCard">PAN Card</option>
+                        <option value="passport">Passport</option>
+                        <!-- Add more document types as needed -->
+                    </select>
+
+                    <label for="uploadFile">Upload Document:</label>
+                    <input type="file" id="uploadFile" name="uploadFile" accept=".pdf, .doc, .docx, .jpg, .png"><br><br><hr><br>
+
+                    <button type="button" onclick="uploadDocument()" style="font-size: 18px;">Upload Document</button>
+                </form><br><br>
+
+                <!-- My Documents Section -->
+                <div class="document-cards" id="uploadDocuments">
+                    <!-- Document cards will be dynamically added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Include Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.12.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.12.1/firebase-auth-compat.js"></script>
+
+<!-- Your Firebase Configuration -->
+<script src="firebase-config.js"></script>
+
+<!-- Your JavaScript Code -->
+<script src="app.js"></script>
+
+<script>
+    function showContent(sectionId) {
+        // Hide all sections
+        document.querySelectorAll('.dashboard-section').forEach(section => {
+            section.style.display = 'none';
+        });
+
+        // Show the selected section
+        document.getElementById(sectionId).style.display = 'block';
+    }
+    function submitSurvey(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Get form data
+    const name = document.getElementById('name').value;
+    const age = document.getElementById('age').value;
+    const email = document.getElementById('email').value;
+    const phoneNumber = document.getElementById('phoneNumber').value;
+    const teacher = document.getElementById('teacher').value;
+    const department = document.getElementById('department').value;
+    const address = document.getElementById('address').value;
+
+    // Update profile details
+    document.getElementById('profile').innerHTML = `
+        <h2 style="font-size: 36px;">User Profile</h2>
+        <h3>Name: ${name}</h3>
+        <h3>Age: ${age}</h3>
+        <h3>Email: ${email}</h3>
+        <h3>Phone Number: ${phoneNumber}</h3>
+        <h3>Teacher: ${teacher}</h3>
+        <h3>Department: ${department}</h3>
+        <h3>Address: ${address}</h3>
+        <!-- Add more details as needed -->
+    `;
+    }
+
+    function uploadDocument() {
+    const documentType = document.getElementById('documentType').value;
+    const uploadFileInput = document.getElementById('uploadFile');
+
+    // Check if a file is selected
+    if (uploadFileInput.files.length > 0) {
+        const uploadFile = uploadFileInput.files[0]; // Get the selected file
+
+        // Create a new card
+        const documentCard = document.createElement('div');
+        documentCard.classList.add('document-card');
+        documentCard.innerHTML = `
+            <p><strong>${documentType}</strong></p>
+            <p>File: ${uploadFile.name}</p>
+            <button class="delete-button">Delete</button>
+        `;
+
+        // Append the card to the document-cards container
+        const documentCardsContainer = document.getElementById('uploadDocuments');
+        documentCardsContainer.appendChild(documentCard);
+
+        // Clear the file input for a better user experience
+        uploadFileInput.value = '';
+
+        // Add event listener for delete button
+        const deleteButton = documentCard.querySelector('.delete-button');
+        deleteButton.addEventListener('click', function() {
+            documentCard.remove();
+        });
+    } else {
+        alert('Please select a file.');
+    }
+}
+
+</script>
+
+</body>
+</html>
