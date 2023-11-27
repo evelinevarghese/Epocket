@@ -6,17 +6,17 @@
     <link rel="stylesheet" href="styles.css">
     <title>Your App</title>
 </head>
-<body>
+<body> <div class="animated-background"> 
 
 <!-- Login Container -->
 <div id="login-container">
     <!-- Your existing login form goes here -->
-    <label for="phoneNumber">Phone Number:</label><br>
+    <label for="phoneNumber">Phone Number:</label><br> 
     <input type="text" id="phoneNumber" placeholder="Enter your phone number">
     <div id="recaptcha-container"></div>
     <button type="button" onclick="sendOTP()">Send OTP</button><hr>
     <br>
-    <label for="verificationCode">Enter OTP:</label>
+    <label for="verificationCode">Enter OTP:</label><br> 
     <input type="text" id="verificationCode" placeholder="Enter the OTP">
     <button type="button" onclick="verifyOTP()">Verify OTP</button>
 </div>
@@ -33,6 +33,6 @@
 <div id="home-container" style="display: none;">
     <!-- This can be empty since you're redirecting to home.html -->
 </div>
-
+</div>
 </body>
 </html>
